@@ -32,9 +32,9 @@ public class DBConnection {
     public static Connection getConnection() {
         Connection con = null;
         try {
-        	Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+        	Class.forName("com.mysql.jdbc.Driver");
         	System.out.println("Driver loaded successfully");
-            con = DriverManager.getConnection("jdbc:derby:C:\\Users\\pro97\\MyDB;create=true");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/trainticketdb","root","Root@123");
         } catch (ClassNotFoundException e) {
             System.err.println("Database Driver not found!");
             e.printStackTrace();

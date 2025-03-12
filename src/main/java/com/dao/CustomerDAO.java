@@ -10,7 +10,7 @@ import java.sql.*;
 public class CustomerDAO {
 
     public boolean registerCustomer(Customer customer) {
-        String query = "INSERT INTO Customer(userName, email, password, address, contactNumber,aadhar) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Customer(userName, email, password, address, contactNumber,aadharNumber) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
@@ -50,7 +50,7 @@ public class CustomerDAO {
                 customer.setPassword(rs.getString("password"));
                 customer.setAddress(rs.getString("address"));
                 customer.setContactNumber(rs.getString("contactNumber"));
-                customer.setAadharNumber(rs.getString("aadhar"));
+                customer.setAadharNumber(rs.getString("aadharNumber"));
                 return customer;
                 
                 }
