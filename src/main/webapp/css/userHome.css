@@ -1,0 +1,114 @@
+/* General Reset */
+
+
+body {
+	background: linear-gradient(120deg, #3498db, #8e44ad);
+}
+
+/* Container for the dashboard */
+.container {
+	max-width: 1200px;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.header {
+	display: flex;
+	align-items: center; /* Aligns items vertically centered */
+	justify-content : space-between;
+	text-align: center;
+	background: grey;
+	color: black;
+	padding: 20px;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	transition: background 0.3s ease;
+	justify-content: space-between; /* Transition for hover effect */
+}
+
+
+.header h1 {
+	font-size: 2.5rem;
+}
+
+.header p {
+	font-size: 1.2rem;
+}
+
+/* Alert Messages */
+.alert {
+	padding: 10px;
+	background-color: #dff0d8;
+	color: #3c763d;
+	border: 1px solid #d6e9c6;
+	border-radius: 4px;
+	margin-bottom: 20px;
+}
+.text-container {
+        text-align: center; /* Centers the text */
+        flex-grow: 1; /* Allows the text container to grow and take up available space */
+    }
+
+.header img {
+	max-width: 100px; /* Adjust the size as needed */
+	height: auto; /* Maintains aspect ratio */
+}
+/* Card Container */
+.card-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+}
+
+/* Ticket Card Styles */
+.ticket-card {
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	transition: transform 0.3s ease; /* Card hover effect */
+}
+
+.ticket-card:hover {
+	transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Card Header */
+.card-header {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 10px;
+}
+
+/* Card Body */
+.card-body {
+	margin: 10px 0;
+}
+
+/* Card Footer */
+.card-footer {
+	text-align: right; /* Align cancel button to the right */
+}
+
+/* Button Styles */
+.btn {
+	padding: 8px 12px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.2s ease;
+	/* Button transition */
+}
+
+.btn-danger {
+	background-color: #d9534f;
+	color: white;
+}
+
+.btn-danger:hover {
+	background-color: #c9302c;
+	transform: translateY(-2px); /* Slight lift on hover */
+}
