@@ -13,7 +13,7 @@ public class TicketDAO {
 
     // Add a new ticket to the database
     public boolean addTicket(Ticket ticket) {
-        String query = "INSERT INTO tickets(pnr, trainNumber, trainName, fromStation, toStation, seatCount, totalFare, userId) " +
+        String query = "INSERT INTO ticket(pnr, trainNumber, trainName, fromStation, toStation, seatCount, totalFare, userId) " +
                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
@@ -37,7 +37,7 @@ public class TicketDAO {
     }
     //book cricket
     public boolean bookTicket(Ticket ticket) {
-        String query = "INSERT INTO Tickets (pnr, trainnumber, trainName, fromStation, toStation, seatCount, totalFare, userId) "
+        String query = "INSERT INTO Ticket (pnr, trainnumber, trainName, fromStation, toStation, seatCount, totalFare, userId) "
                      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection();
@@ -60,7 +60,7 @@ public class TicketDAO {
     }
     // Retrieve a list of tickets for a specific user
     public List<Ticket> getTicketsByUserId(int userId) {
-        String query = "SELECT * FROM tickets WHERE userId = ?";
+        String query = "SELECT * FROM ticket WHERE userId = ?";
         List<Ticket> tickets = new ArrayList<>();
 
         try (Connection conn = DBConnection.getConnection();
@@ -82,7 +82,7 @@ public class TicketDAO {
 
     // Retrieve all tickets (for admin purposes)
     public List<Ticket> getAllTickets() {
-        String query = "SELECT * FROM tickets";
+        String query = "SELECT * FROM ticket";
         List<Ticket> tickets = new ArrayList<>();
 
         try (Connection conn = DBConnection.getConnection();
@@ -117,7 +117,7 @@ public class TicketDAO {
     }*/
     
     public boolean cancelTicket(String pnr) {
-        String query = "SELECT trainNumber,seatCount FROM tickets WHERE pnr = ?"; // First, retrieve the train number for the ticket
+        String query = "SELECT trainNumber,seatCount FROM ticket WHERE pnr = ?"; // First, retrieve the train number for the ticket
         int trainId = 0;
         int seatcount = 0;
 
@@ -139,7 +139,7 @@ public class TicketDAO {
 
         if (trainId != 0) {
             // Now proceed with the ticket cancellation and increasing the seat count
-            String deleteTicketQuery = "DELETE FROM tickets WHERE pnr = ?"; // Delete the ticket
+            String deleteTicketQuery = "DELETE FROM ticket WHERE pnr = ?"; // Delete the ticket
 
             try (Connection conn = DBConnection.getConnection();
                  PreparedStatement stmt = conn.prepareStatement(deleteTicketQuery)) {
@@ -188,8 +188,8 @@ public class TicketDAO {
 	 */
     
     public boolean cancelTicketsForUser(int userId) {
-        String selectQuery = "SELECT trainNumber, SUM(seatCount) AS totalSeats FROM tickets WHERE userId = ? GROUP BY trainNumber";
-        String deleteQuery = "DELETE FROM tickets WHERE userId = ?";
+        String selectQuery = "SELECT trainNumber, SUM(seatCount) AS totalSeats FROM ticket WHERE userId = ? GROUP BY trainNumber";
+        String deleteQuery = "DELETE FROM ticket WHERE userId = ?";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
@@ -222,7 +222,7 @@ public class TicketDAO {
 
     // Update ticket details (optional, based on requirements)
     public boolean updateTicket(Ticket ticket) {
-        String query = "UPDATE tickets SET trainNumber = ?, trainName = ?, fromStation = ?, toStation = ?, seatCount = ?, totalFare = ? " +
+        String query = "UPDATE ticket SET trainNumber = ?, trainName = ?, fromStation = ?, toStation = ?, seatCount = ?, totalFare = ? " +
                        "WHERE ticketId = ?";
 
         try (Connection conn = DBConnection.getConnection();

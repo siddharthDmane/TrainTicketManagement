@@ -10,7 +10,7 @@ public class AdminDAO {
 
     // Admin Registration
     public boolean registerAdmin(Admin admin) {
-        String query = "INSERT INTO Admin(uname, name, password, mail_id, phone_no) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Admin(uname, name, password, email, phoneNo) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
@@ -48,8 +48,8 @@ public class AdminDAO {
                     admin.setUname(rs.getString("uname"));
                     admin.setName(rs.getString("name"));
                     admin.setPassword(rs.getString("password"));
-                    admin.setEmail(rs.getString("mail_id"));
-                    admin.setPhoneNo(rs.getString("phone_no"));
+                    admin.setEmail(rs.getString("email"));
+                    admin.setPhoneNo(rs.getString("phoneNo"));
                     return admin;
                 }
             }
