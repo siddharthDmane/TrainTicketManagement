@@ -184,7 +184,6 @@ public class TrainDAO {
         return false;
         }
     
-
     public void deleteTrain(int trainNo) {
         String query = "DELETE FROM Train WHERE trainNo = ?";
         try (Connection conn = DBConnection.getConnection(); 

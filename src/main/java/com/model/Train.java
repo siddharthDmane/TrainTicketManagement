@@ -11,6 +11,7 @@ public class Train {
     private int fare;
     
     public Train() {};
+    
     public Train(String trainName,String fromStation,String toStation,int availableSeats,int fare){
     	this.trainName=trainName;
     	this.fromStation=fromStation;
