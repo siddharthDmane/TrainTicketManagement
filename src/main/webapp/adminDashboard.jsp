@@ -32,8 +32,7 @@
                 %>
             }
         };
-    </script>
-    
+    </script>    
     
     <script>
         function confirmCancel(trainNo) {

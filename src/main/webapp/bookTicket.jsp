@@ -255,7 +255,7 @@ body {
 				</div>
 
 				<div class="form-group">
-					<label for="bookingDate">Booking Date:</label> <input type="date"
+					<label for="bookingDate">Booking Date:</label> <input type="datetime-local"
 						class="form-control" name="bookingDate" id="bookingDate" required
 						min="<%=new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date())%>">
 				</div>

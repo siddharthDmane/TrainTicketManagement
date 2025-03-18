@@ -64,7 +64,7 @@ public class CustomerDAO {
     
  // Update customer profile
     public boolean updateCustomerProfile(Customer customer) {
-        String query = "UPDATE Customer SET username = ?, email = ?, contactNumber = ?, address = ?, aadhar = ? WHERE userId = ?";
+        String query = "UPDATE Customer SET username = ?, email = ?, contactNumber = ?, address = ?, aadharNumber = ? WHERE userId = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

@@ -2,6 +2,7 @@ package com.servlet;
 
 import com.dao.CustomerDAO;
 import com.model.Customer;
+import com.util.PasswordUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -57,7 +58,7 @@ public class UserProfileServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		// Verify old password
-		if (!customer.getPassword().equals(oldPassword)) {
+		if (!customer.getPassword().equals( PasswordUtil.encryptPassword(oldPassword))) {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Incorrect password');");
 			out.println("window.location = 'userprofile';");

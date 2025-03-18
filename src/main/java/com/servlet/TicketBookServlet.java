@@ -1,7 +1,8 @@
 package com.servlet;
 
 
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import com.dao.TrainDAO;
 import com.dao.TicketDAO;
 import com.model.Train;
@@ -12,6 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 @WebServlet("/bookTicket")
 public class TicketBookServlet extends HttpServlet {
@@ -97,8 +99,17 @@ public class TicketBookServlet extends HttpServlet {
             String toStation = request.getParameter("toStation");
             String seatCountStr = request.getParameter("seatCount");
             String fareStr = request.getParameter("fare");
+            String dateTimeString = request.getParameter("bookingDate");
+            
+            LocalDateTime localDateTime = LocalDateTime.parse(dateTimeString);
 
-            if (trainIdStr == null || trainName == null || fromStation == null || toStation == null || seatCountStr == null || fareStr == null) {
+            // Format it to "yyyy-MM-dd HH:mm:ss"
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = localDateTime.format(formatter);
+            
+            System.out.println(formattedDateTime);
+
+            if (trainIdStr == null || trainName == null || fromStation == null || toStation == null || seatCountStr == null || fareStr == null || formattedDateTime == null) {
                 throw new IllegalArgumentException("All fields are required.");
             }
 
@@ -117,6 +128,7 @@ public class TicketBookServlet extends HttpServlet {
             ticket.setToStation(toStation);
             ticket.setSeatCount(noOfSeats);
             ticket.setTotalFare(totalFare);
+            ticket.setBookingDate((Timestamp.valueOf(formattedDateTime)));
             ticket.setUserId(customer.getUserId());
 
             TicketDAO ticketDAO = new TicketDAO();

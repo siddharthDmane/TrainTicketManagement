@@ -49,10 +49,19 @@ public class TicketDAO {
             preparedStatement.setString(5, ticket.getToStation());
             preparedStatement.setInt(6, ticket.getSeatCount());
             preparedStatement.setDouble(7, ticket.getTotalFare());
+//            preparedStatement.setTimestamp(8, ticket.getBookingDate());
             preparedStatement.setInt(8, ticket.getUserId());
 
             int rowsAffected = preparedStatement.executeUpdate();
-            return rowsAffected > 0;
+            if(rowsAffected > 0) {
+            	query = "update Ticket set bookingDate = ? where pnr = ?";
+            	PreparedStatement preparedStatement1 = connection.prepareStatement(query);
+            	preparedStatement1.setTimestamp(1, ticket.getBookingDate());
+            	preparedStatement1.setString(2, ticket.getPnr());
+            	rowsAffected = preparedStatement1.executeUpdate();
+            	return rowsAffected > 0;	
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
